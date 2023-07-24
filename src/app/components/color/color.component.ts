@@ -9,6 +9,7 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorComponent implements OnInit{
 colors:Color[]=[];
+currentColor:Color;
 
   ngOnInit(): void {
   this.getColors();
@@ -22,5 +23,28 @@ getColors(){
     this.colors=response.data;
     
   })
+}
+
+
+setCurrentColor(color: Color) {
+  this.currentColor = color;
+}
+
+getCurrentColorClass(color:Color) {
+  if (color==this.currentColor) {
+    return "list-group-item active"
+  }
+  else{
+    return "list-group-item"
+  }
+}
+
+getAllBrandClass(){
+  if (!this.currentColor) {
+    return "list-group-item-active";
+  }
+  else{
+    return "list-group-item"
+  }
 }
 }
